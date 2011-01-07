@@ -8,7 +8,7 @@ Stable tag: trunk
 
 This plugin will provide a list and details about available shortcodes in your current installment. And all when you need it most.
 
-When you're actually editing your content.
+When you are actually editing your content.
 
 == Description ==
 
@@ -36,7 +36,7 @@ N/A
 
 == Screenshots ==
 
-1 This little meta-box will be provided when you're editing posts, pages or links.
+1. This little meta-box will be provided when you're editing posts, pages or links.
 
 == Upgrade notice == 
 
