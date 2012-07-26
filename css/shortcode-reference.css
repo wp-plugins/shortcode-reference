@@ -17,9 +17,9 @@
 	cursor: pointer;
 }
 .shortcode_reference_list .shortcode_reference_item.highlight {
-	background: #E4F2FDs;
+	background: #E4F2FD;
+	margin: 0;
 }
-
 .shortcode_reference_list .shortcode_reference_item.selected {
 	background: #EEEEEE;
 	font-weight :bold;
