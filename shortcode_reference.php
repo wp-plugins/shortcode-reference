@@ -9,15 +9,15 @@
   **/
 if (version_compare(phpversion(),'5.0.0','gt')) {
 	require_once 'conf/include.php';
-	
-	wp_enqueue_style('shortcode-reference-style');
-	wp_enqueue_script('shortcode-reference-js', SHORTCODE_REFERENCE_PLUGIN_DIR.'/js/shortcode-reference.js', null,null,true);
-	
+
 	$dir = dirname(__FILE__).'/lib';
 	shortcode_overview_util_require_files($dir);
 	/**
 	 * Add an extra meta-box
 	 */
+	add_action('admin_head-post.php', 'shortcode_reference_scripts');
+	add_action('admin_head-post-new.php', 'shortcode_reference_scripts');
+	
 	add_action('add_meta_boxes','shortcode_reference_render_meta_box');
 	add_action('wp_ajax_shortcode_reference_find_shortcode', 'shortcode_reference_get_reference');
 }
