@@ -15,7 +15,12 @@ class ShortcodeReference {
 	/**
 	 * @var ReflectionFunction
 	 */
-	private $_function_reflection; 
+	private $_function_reflection;
+
+	/**
+	 * @var string
+	 */
+	private $_filepath;
 	
 	/**
 	 * Flat DocComments.
@@ -68,28 +73,30 @@ class ShortcodeReference {
 		if ($this->_description == ''){
 			$this->_known_tags = array();
 			$desc = $this->_function_reflection->getDocComment();
-			$matches = preg_split('/\n/',$desc);
 			$parsed_desc = '';
-			$start_pattern = '/w*\/\*\*w*/';
-			foreach ($matches as $match) {
-				if (preg_match($start_pattern, $match,$submatch)){
-					// skip it
-				} else if (preg_match('/w*\*\//',$match,$submatch)){
-					$offset = strpos($match,'*/')-1;
-					$final_line.= trim(substr($match,0,-$offset)).'
+			if ($desc){
+				$matches = preg_split('/\n/',$desc);
+				$start_pattern = '/w*\/\*\*w*/';
+				foreach ($matches as $match) {
+					if (preg_match($start_pattern, $match,$submatch)){
+						// skip it
+					} else if (preg_match('/w*\*\//',$match,$submatch)){
+						$offset = strpos($match,'*/')-1;
+						$final_line.= trim(substr($match,0,-$offset)).'
 ';
-					if ($final_line != ''){
-						$parsed_desc .= $final_line;
-					}
-				} else if (preg_match('/w*\*/',$match,$submatch)){
-					if (preg_match('/@/',$match,$submatch)){
-						$offset = strpos($match,'@')+1;
-						$tag = trim(substr($match,$offset,strlen($match)-$offset));
-						$this->addTagFromString($tag);
-					} else {
-						$offset = strpos($match,'*')+1;
-						$parsed_desc .= trim(substr($match,$offset,strlen($match)-$offset)).'
-	';
+						if ($final_line != ''){
+							$parsed_desc .= $final_line;
+						}
+					} else if (preg_match('/w*\*/',$match,$submatch)){
+						if (preg_match('/@/',$match,$submatch)){
+							$offset = strpos($match,'@')+1;
+							$tag = trim(substr($match,$offset,strlen($match)-$offset));
+							$this->addTagFromString($tag);
+						} else {
+							$offset = strpos($match,'*')+1;
+							$parsed_desc .= trim(substr($match,$offset,strlen($match)-$offset)).'
+		';
+						}
 					}
 				}
 			}
@@ -107,6 +114,7 @@ class ShortcodeReference {
 	 */
 	public function getReference(){
 		$absolute_path = $this->_function_reflection->getFileName();
+		$this->_filepath = $absolute_path;
 		if (strpos($absolute_path, ABSPATH)>=0){
 			/**
 			 * Yay, it's from Wordpress!
@@ -122,6 +130,15 @@ class ShortcodeReference {
 			}
 		}
 		return 'PHP native';
+	}
+	
+	/**
+	 * Retrieve the absolute file path
+	 *
+	 * @return string
+	 */
+	public function getFilePath(){
+		return $this->_filepath;
 	}
 	
 	/**
@@ -159,15 +176,15 @@ class ShortcodeReference {
 	 * @return url
 	 */
 	public function getUrl(){
+		
 		if (!$this->_url){
+			
 			$is_plugin = strpos($this->getReference(),'Plugin:');
 			if ($this->getReference() == 'WordPress function'){
 
 				$this->_url ='http://codex.wordpress.org/index.php?title=Special:Search&search='.$this->_shortcode.'_Shortcode';
 			} else if ($is_plugin !== false){
-				
-				$plugin_path = str_replace('Plugin: ','',$this->getReference());
-				$plugin_info = get_plugin_data(WP_PLUGIN_DIR.'/'.$plugin_path.'/'.$plugin_path.'.php');
+				$plugin_info = get_plugin_data($this->_filepath);
 				
 				if (is_array($plugin_info) && key_exists('PluginURI',$plugin_info)){
 					/**
