@@ -3,12 +3,11 @@ Contributors: bartee
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=7T3QDZA9SP7D2
 Tags: shortcode, reference, post, page, links
 Requires at least: 3.0
-Tested up to: 3.0.1
+Tested up to: 3.4.1
 Stable tag: trunk
 
-This plugin will provide a list and details about available shortcodes in your current installment. And all when you need it most.
-
-When you are actually editing your content.
+This plugin will provide a list and details about available shortcodes in your current installment. All when you need it most.
+When editing your content.
 
 == Description ==
 
@@ -43,6 +42,9 @@ N/A
 It's only a first release, so there's nothing to upgrade.
 
 == Changelog ==
+= 0.2 =
+* Changed resolving of the plugin's css/js files
+* Made file lookup case sensitive
 
 = 0.1 =
 * First release

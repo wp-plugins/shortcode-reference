@@ -32,8 +32,6 @@ function shortcode_reference_render_meta_box(){
 
 /**
 * Function to include static files for using this plugins. 
-* Thanks to Stephanie Leary for the suggestion!
-* 
 * 
 **/
 function shortcode_reference_scripts() {
