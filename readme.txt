@@ -7,7 +7,8 @@ Tested up to: 3.4.1
 Stable tag: trunk
 
 This plugin will provide a list and details about available shortcodes in your current installment. All when you need it most.
-When editing your content.
+When editing your content.  
+
 
 == Description ==
 
@@ -42,6 +43,9 @@ N/A
 It's only a first release, so there's nothing to upgrade.
 
 == Changelog ==
+= 0.3 = 
+* Added reference box to all public post types. 
+
 = 0.2 =
 * Changed resolving of the plugin's css/js files
 * Made file lookup case sensitive

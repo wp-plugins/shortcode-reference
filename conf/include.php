@@ -25,9 +25,9 @@ function shortcode_overview_util_require_files($path) {
  */
 function shortcode_reference_render_meta_box(){
 	$ShortcodeReferenceUIManager = new ShortcodeReferenceUIManager();
-	add_meta_box('shortcode_overview_container',__('Shortcode reference','ShortcodesAutoreference'), array(&$ShortcodeReferenceUIManager,'showReferencePanel'), 'post','side');
- 	add_meta_box('shortcode_overview_container',__('Shortcode reference','ShortcodesAutoreference'), array(&$ShortcodeReferenceUIManager,'showReferencePanel'), 'page','side');
- 	add_meta_box('shortcode_overview_container',__('Shortcode reference','ShortcodesAutoreference'), array(&$ShortcodeReferenceUIManager,'showReferencePanel'), 'link','side');
+	foreach (get_post_types( array('public' => true) ) as $posttype){
+		add_meta_box('shortcode_overview_container',__('Shortcode reference','ShortcodesAutoreference'), array(&$ShortcodeReferenceUIManager,'showReferencePanel'), $posttype, 'side');
+	}
 }
 
 /**
