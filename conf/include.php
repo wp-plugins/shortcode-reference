@@ -1,8 +1,7 @@
 <?php
  /**
-  * This file contains some utilities to get the extension working.  
+  * This file contains some utilities to get the extension working. 
   **/
-define (SHORTCODE_REFERENCE_PLUGIN_DIR, '/'.str_replace(array(ABSPATH,conf),array('',''),dirname(__FILE__)));
 
 /**
  * Utility-function to automatically include a dir recursively
@@ -32,6 +31,16 @@ function shortcode_reference_render_meta_box(){
 }
 
 /**
+* Function to include static files for using this plugins. 
+* 
+**/
+function shortcode_reference_scripts() {
+	$referrer = realpath(dirname(__FILE__));
+	wp_enqueue_style( 'shortcode-reference-style', plugins_url('/css/shortcode-reference.css', $referrer) );
+	wp_enqueue_script( 'shortcode-reference-js', plugins_url('/js/shortcode-reference.js', $referrer) );
+}
+
+/**
  * A little utility-function to retrieve the shortcode's details. Executed in a custom action
  */
 function shortcode_reference_get_reference(){
@@ -39,5 +48,3 @@ function shortcode_reference_get_reference(){
 	$shortcode = $_POST['shortcode'];
 	$ShortcodeReferenceUIManager->getReference($shortcode);	
 }
-
-wp_register_style('shortcode-reference-style', SHORTCODE_REFERENCE_PLUGIN_DIR.'/css/shortcode-reference.css',false);
