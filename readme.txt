@@ -7,8 +7,7 @@ Tested up to: 3.4.1
 Stable tag: trunk
 
 This plugin will provide a list and details about available shortcodes in your current installment. All when you need it most.
-When editing your content.  
-
+When editing content.  
 
 == Description ==
 
@@ -28,7 +27,7 @@ To install Shortcode Reference:
 
 1. Download & unzip the 'shortcode-reference.zip' into the `/wp-content/plugins/` directory
 2. Activate the plugin through the 'Plugins' menu in WordPress
-3. You'll have an extra meta-box when editing posts, pages and links, providing realtime information about you
+3. You'll have an extra meta-box when editing posts, pages and links, providing realtime information about your available shortcodes and how to use them - if the code they use is  documented properly
 
 == Frequently Asked Questions ==
 
@@ -43,10 +42,8 @@ N/A
 It's only a first release, so there's nothing to upgrade.
 
 == Changelog ==
-= 0.3 = 
+= 0.2 = 
 * Added reference box to all public post types. 
-
-= 0.2 =
 * Changed resolving of the plugin's css/js files
 * Made file lookup case sensitive
 
