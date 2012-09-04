@@ -6,8 +6,7 @@ Requires at least: 3.0
 Tested up to: 3.4.1
 Stable tag: trunk
 
-This plugin will provide a list and details about available shortcodes in your current installment. All when you need it most.
-When editing content.  
+This plugin will provide a list and details about available shortcodes in your current installment. All when you need it most - when editing content.  
 
 == Description ==
 
