@@ -2,7 +2,7 @@
  /**
   * Plugin Name: Shortcode Reference
   * Plugin URI: http://www.linkedin.com/in/bartstroeken
-  * Version: 0.2
+  * Version: 1.0.0
   * Author: Bart Stroeken
   * Author URI: http://www.linkedin.com/in/bartstroeken
   * Description: This plugin will provide the details about all available shortcodes when you'll need it most: when you're editing your content  

@@ -3,8 +3,8 @@ Contributors: bartee
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=7T3QDZA9SP7D2
 Tags: shortcode, reference, post, page, links
 Requires at least: 3.0
-Tested up to: 3.4.1
-Stable tag: trunk
+Tested up to: 4.1.1
+Stable tag: 1.0
 
 This plugin will provide a list and details about available shortcodes in your current installment. All when you need it most - when editing content.  
 
@@ -38,9 +38,13 @@ N/A
 
 == Upgrade notice == 
 
-It's only a first release, so there's nothing to upgrade.
+Nothing to worry about. No special steps necessary.
 
 == Changelog ==
+= 1.0 =
+* If a found shortcode originates from the themes-directory, it will tell you so.
+  Also, if it is available, it will give you the documentation.
+
 = 0.2 = 
 * Added reference box to all public post types. 
 * Changed resolving of the plugin's css/js files
