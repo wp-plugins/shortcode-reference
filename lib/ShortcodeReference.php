@@ -122,12 +122,18 @@ class ShortcodeReference {
 			$relative_path = str_replace(ABSPATH,'',$absolute_path);
 			$is_native = strpos($relative_path, 'wp-includes/');
 			$is_plugin = strpos($relative_path, 'wp-content/plugins/');
+			$is_theme = strpos($relative_path, 'wp-content/themes/');
 			if ($is_native !== false){
 				return 'WordPress function';
-			} else if ($is_plugin !== false){
+
+            } else if ($is_plugin !== false){
 				$plugin_path = explode('/',str_replace('wp-content/plugins/','',$relative_path));
 				return 'Plugin: '.$plugin_path[0];
-			}
+
+            } else if ($is_theme !== false){
+                $theme_path = explode('/',str_replace('wp-content/themes/','',$relative_path));
+                return 'Theme: '.$theme_path[0];
+            }
 		}
 		return 'PHP native';
 	}
@@ -179,10 +185,11 @@ class ShortcodeReference {
 		
 		if (!$this->_url){
 			
-			$is_plugin = strpos($this->getReference(),'Plugin:');
+			$is_plugin = strpos($this->getReference(),'Plugin: ');
+			$is_theme = strpos($this->getReference(),'Theme: ');
 			if ($this->getReference() == 'WordPress function'){
-
 				$this->_url ='http://codex.wordpress.org/index.php?title=Special:Search&search='.$this->_shortcode.'_Shortcode';
+
 			} else if ($is_plugin !== false){
 				$plugin_info = get_plugin_data($this->_filepath);
 				
@@ -202,6 +209,13 @@ class ShortcodeReference {
 					 */
 					$this->_url = 'http://www.google.com/search?q=Wordpress+'.$plugin_path.'+'.$this->_shortcode;
 				}
+
+            } else if ($is_theme !== false){
+                // $theme_name = strtolower(str_replace('Theme: ','',$this->getReference()));
+                $theme_root = get_theme_root();
+                $theme = wp_get_theme(null, $theme_root);
+                $this->_url = $theme->get('ThemeURI');
+
 			} else {
 				$this->_url = 'http://www.php.net/'.$this->_shortcode;
 			}
